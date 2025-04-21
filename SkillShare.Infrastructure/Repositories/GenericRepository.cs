@@ -1,15 +1,16 @@
 ﻿using SkillShare.Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace SkillShare.Infrastructure.Repositories
 {
-    public class GenericRepository : IGenericRepository
+    public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         protected DatabaseContext context;
         public GenericRepository(DatabaseContext context)
         {
             this.context = context;
         }
-        public Task Add<T>(T item)
+        public Task Add(T item)
         {
             throw new NotImplementedException();
         }
@@ -19,17 +20,17 @@ namespace SkillShare.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<List<T>> GetAll<T>()
+        public async Task<List<T>> GetAll()
+        {
+            return await context.Set<T>().ToListAsync();
+        }
+
+        public Task<T> GetById(ValueType id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<T> GetById<T>(ValueType id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task Update<T>(T item)
+        public Task Update(T item)
         {
             throw new NotImplementedException();
         }

@@ -1,6 +1,9 @@
 
 using Microsoft.EntityFrameworkCore;
+using SkillShare.Application.Services;
+using SkillShare.Domain.Interfaces;
 using SkillShare.Infrastructure;
+using SkillShare.Infrastructure.Interfaces;
 
 namespace SkillShare.API
 {
@@ -18,6 +21,9 @@ namespace SkillShare.API
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddScoped<ITestInterface, TestService>();
 
             var app = builder.Build();
 

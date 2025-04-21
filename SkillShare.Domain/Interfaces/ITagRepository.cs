@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SkillShare.Domain.Entities;
 
 namespace SkillShare.Domain.Interfaces
 {
-    public interface ITagRepository : IGenericRepository
+    public interface ITagRepository : IGenericRepository<Tag>
     {
     }
 }

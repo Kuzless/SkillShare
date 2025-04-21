@@ -1,11 +1,11 @@
 ﻿namespace SkillShare.Domain.Interfaces
 {
-    public interface IGenericRepository
+    public interface IGenericRepository<T> where T : class
     {
-        public Task<T> GetById<T>(ValueType id);
-        public Task<List<T>> GetAll<T>();
-        public Task Add<T>(T item);
-        public Task Update<T>(T item);
+        public Task<T> GetById(ValueType id);
+        public Task<List<T>> GetAll();
+        public Task Add(T item);
+        public Task Update(T item);
         public Task Delete(ValueType id);
     }
 }

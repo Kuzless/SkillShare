@@ -1,8 +1,11 @@
-﻿namespace SkillShare.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SkillShare.Domain.Entities
 {
     public class User
     {
-        Guid Id { get; set; }
+        [Key]
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }

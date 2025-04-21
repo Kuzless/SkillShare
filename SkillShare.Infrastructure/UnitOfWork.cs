@@ -23,7 +23,7 @@ namespace SkillShare.Infrastructure
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            context.Dispose();
         }
     }
 }

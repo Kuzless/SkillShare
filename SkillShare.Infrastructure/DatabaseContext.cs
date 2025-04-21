@@ -5,8 +5,8 @@ namespace SkillShare.Infrastructure
 {
     public class DatabaseContext : DbContext
     {
-        public DbSet<User> Users = null!;
-        public DbSet<Tag> Tags = null!;
+        public DbSet<User> Users { get; set; }
+        public DbSet<Tag> Tags { get; set; }
         public DatabaseContext() : base()
         {
             
