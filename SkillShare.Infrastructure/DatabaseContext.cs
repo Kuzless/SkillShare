@@ -11,7 +11,7 @@ namespace SkillShare.Infrastructure
         {
             
         }
-        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) 
+        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
             Database.EnsureCreated();
         }

@@ -4,5 +4,6 @@
     {
         ITagRepository TagRepository { get; }
         IUserRepository UserRepository { get; }
+        public Task SaveAsync();
     }
 }
