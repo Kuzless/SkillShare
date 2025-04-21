@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="CQRS\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SkillShare.Domain\SkillShare.Domain.csproj" />
+    <ProjectReference Include="..\SkillShare.Infrastructure\SkillShare.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
