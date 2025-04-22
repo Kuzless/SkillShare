@@ -10,6 +10,7 @@ namespace SkillShare.Domain.Entities
         public string Email { get; set; }
         public string Description { get; set; }
         public double Rating { get; set; }
+        public int ReviewCount { get; set; }
         public string Password { get; set; }
         public string Token { get; set; }
         public string RefreshToken { get; set; }

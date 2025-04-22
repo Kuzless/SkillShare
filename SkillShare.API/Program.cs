@@ -1,5 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
+using SkillShare.API.Configuration;
 using SkillShare.Application.Services;
 using SkillShare.Domain.Interfaces;
 using SkillShare.Infrastructure;
@@ -21,6 +22,7 @@ namespace SkillShare.API
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddAutoMapper(typeof(AutoMappingProfile));
 
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped<ITestInterface, TestService>();
