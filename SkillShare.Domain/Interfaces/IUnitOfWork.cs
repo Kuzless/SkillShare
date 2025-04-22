@@ -4,6 +4,9 @@
     {
         ITagRepository TagRepository { get; }
         IUserRepository UserRepository { get; }
+        IChatRepository ChatRepository { get; }
+        IMessageRepository MessageRepository { get; }
+        IRatingRepository RatingRepository { get; }
         public Task SaveAsync();
     }
 }
