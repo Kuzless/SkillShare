@@ -1,4 +1,6 @@
-﻿namespace SkillShare.Application.DTO
+﻿using SkillShare.Domain.Entities;
+
+namespace SkillShare.Infrastructure.DTOs
 {
     public class ChatDTO
     {

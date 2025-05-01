@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using SkillShare.Application.CQRS.Chat.Commands.AddChatCommand;
-using SkillShare.Application.CQRS.Chat.Commands.DeleteChatCommand;
 using SkillShare.Domain.Entities;
+using SkillShare.Infrastructure.DTOs;
 
 namespace SkillShare.API.Configuration
 {
@@ -9,8 +9,8 @@ namespace SkillShare.API.Configuration
     {
         public AutoMappingProfile()
         {
+            CreateMap<Chat, ChatDTO>().ReverseMap();
             CreateMap<AddChatCommand, Chat>();
-            CreateMap<DeleteChatCommand, Chat>();
         }
     }
 }

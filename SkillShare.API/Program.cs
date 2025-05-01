@@ -2,10 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using SkillShare.API.Configuration;
 using SkillShare.Application.CQRS.Chat.Commands.AddChatCommand;
-using SkillShare.Application.Services;
 using SkillShare.Domain.Interfaces;
 using SkillShare.Infrastructure;
-using SkillShare.Infrastructure.Interfaces;
 
 namespace SkillShare.API
 {
@@ -28,7 +26,6 @@ namespace SkillShare.API
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(AddChatCommand).Assembly));
 
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-            builder.Services.AddScoped<ITestInterface, TestService>();
 
             var app = builder.Build();
 

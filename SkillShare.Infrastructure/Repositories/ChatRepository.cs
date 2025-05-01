@@ -22,5 +22,10 @@ namespace SkillShare.Infrastructure.Repositories
             var result = await context.Set<Chat>().Where(c => c.FirstUserId == id1 && c.SecondUserId == id2).ExecuteDeleteAsync();
             return result > 0;
         }
+
+        public async Task<List<Chat>> GetAll(Guid id)
+        {
+            return await context.Set<Chat>().Where(c => c.FirstUserId == id || c.SecondUserId == id).ToListAsync();
+        }
     }
 }

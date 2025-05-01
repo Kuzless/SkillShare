@@ -1,5 +1,4 @@
 ﻿using SkillShare.Domain.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace SkillShare.Infrastructure.Repositories
 {
@@ -14,11 +13,6 @@ namespace SkillShare.Infrastructure.Repositories
         {
             context.Set<T>().AddAsync(item);
             return Task.CompletedTask;
-        }
-
-        public virtual async Task<List<T>> GetAll()
-        {
-            return await context.Set<T>().ToListAsync();
         }
 
         public virtual Task<T> GetById(ValueType id)

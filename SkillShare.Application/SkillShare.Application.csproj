@@ -16,4 +16,8 @@
     <ProjectReference Include="..\SkillShare.Infrastructure\SkillShare.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>

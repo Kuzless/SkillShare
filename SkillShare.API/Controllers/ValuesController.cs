@@ -1,8 +1,10 @@
-﻿using MediatR;
+﻿using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SkillShare.Application.CQRS.Chat.Commands.AddChatCommand;
 using SkillShare.Application.CQRS.Chat.Commands.DeleteChatCommand;
-using SkillShare.Infrastructure.Interfaces;
+using SkillShare.Application.CQRS.Chat.Queries.GetChatsByUserIdQuery;
+using SkillShare.Infrastructure.DTOs;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,26 +14,16 @@ namespace SkillShare.API.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        ITestInterface TestService { get; set; }
         private IMediator mediator;
-        public ValuesController(ITestInterface test, IMediator mediator)
+        public ValuesController(IMediator mediator)
         {
-            TestService = test;
             this.mediator = mediator;
         }
-        // GET: api/<ValuesController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            TestService.Test();
-            return new string[] { "value1", "value2" };
-        }
 
-        // GET api/<ValuesController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{userId}")]
+        public async Task<List<ChatDTO>> Get(Guid userId)
         {
-            return "value";
+            return await mediator.Send(new GetChatsByUserIdQuery(userId));
         }
 
         // POST api/<ValuesController>

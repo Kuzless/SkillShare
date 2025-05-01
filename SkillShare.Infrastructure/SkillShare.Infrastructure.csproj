@@ -14,4 +14,8 @@
     <ProjectReference Include="..\SkillShare.Domain\SkillShare.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+
 </Project>
