@@ -10,27 +10,28 @@ namespace SkillShare.Infrastructure.Repositories
         {
             this.context = context;
         }
-        public Task Add(T item)
+        public virtual Task Add(T item)
+        {
+            context.Set<T>().AddAsync(item);
+            return Task.CompletedTask;
+        }
+
+        public virtual Task Delete(ValueType id)
         {
             throw new NotImplementedException();
         }
 
-        public Task Delete(ValueType id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<List<T>> GetAll()
+        public virtual async Task<List<T>> GetAll()
         {
             return await context.Set<T>().ToListAsync();
         }
 
-        public Task<T> GetById(ValueType id)
+        public virtual Task<T> GetById(ValueType id)
         {
             throw new NotImplementedException();
         }
 
-        public Task Update(T item)
+        public virtual Task Update(T item)
         {
             throw new NotImplementedException();
         }

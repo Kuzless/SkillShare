@@ -9,9 +9,9 @@ namespace SkillShare.Domain.Entities
         public User FirstUser { get; set; }
         public Guid SecondUserId { get; set; }
         public User SecondUser { get; set; }
-        public string LastMessage { get; set; }
-        public Guid LastMessageOwner { get; set; }
-        public bool IsNewMessagePresent { get; set; }
-        public List<Message> Messages { get; set; }
+        public string? LastMessage { get; set; }
+        public Guid? LastMessageOwner { get; set; }
+        public bool? IsNewMessagePresent { get; set; }
+        public List<Message>? Messages { get; set; }
     }
 }

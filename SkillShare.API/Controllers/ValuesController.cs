@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using SkillShare.Application.CQRS.Chat.Commands.AddChatCommand;
 using SkillShare.Infrastructure.Interfaces;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -10,9 +12,11 @@ namespace SkillShare.API.Controllers
     public class ValuesController : ControllerBase
     {
         ITestInterface TestService { get; set; }
-        public ValuesController(ITestInterface test)
+        private IMediator mediator;
+        public ValuesController(ITestInterface test, IMediator mediator)
         {
             TestService = test;
+            this.mediator = mediator;
         }
         // GET: api/<ValuesController>
         [HttpGet]
@@ -31,8 +35,9 @@ namespace SkillShare.API.Controllers
 
         // POST api/<ValuesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public Task<string> PostChat([FromBody] AddChatCommand chat)
         {
+            return mediator.Send(chat);
         }
 
         // PUT api/<ValuesController>/5
