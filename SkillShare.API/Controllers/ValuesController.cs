@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SkillShare.Application.CQRS.Chat.Commands.AddChatCommand;
+using SkillShare.Application.CQRS.Chat.Commands.DeleteChatCommand;
 using SkillShare.Infrastructure.Interfaces;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -35,9 +36,9 @@ namespace SkillShare.API.Controllers
 
         // POST api/<ValuesController>
         [HttpPost]
-        public Task<string> PostChat([FromBody] AddChatCommand chat)
+        public async Task<string> PostChat([FromBody] AddChatCommand chat)
         {
-            return mediator.Send(chat);
+            return await mediator.Send(chat);
         }
 
         // PUT api/<ValuesController>/5
@@ -47,9 +48,18 @@ namespace SkillShare.API.Controllers
         }
 
         // DELETE api/<ValuesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public async Task<ActionResult<bool>> Delete([FromBody] DeleteChatCommand chat)
         {
+            bool result = await mediator.Send(chat);
+            if (result)
+            {
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }

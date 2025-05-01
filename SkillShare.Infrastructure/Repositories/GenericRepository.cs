@@ -16,11 +16,6 @@ namespace SkillShare.Infrastructure.Repositories
             return Task.CompletedTask;
         }
 
-        public virtual Task Delete(ValueType id)
-        {
-            throw new NotImplementedException();
-        }
-
         public virtual async Task<List<T>> GetAll()
         {
             return await context.Set<T>().ToListAsync();

@@ -1,4 +1,5 @@
-﻿using SkillShare.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using SkillShare.Domain.Entities;
 using SkillShare.Domain.Interfaces;
 
 namespace SkillShare.Infrastructure.Repositories
@@ -14,6 +15,12 @@ namespace SkillShare.Infrastructure.Repositories
             await base.Add(item);
             var result = await context.Set<Chat>().FindAsync(item.FirstUserId, item.SecondUserId);
             return $"{result.FirstUserId}:{result.SecondUserId}";
+        }
+
+        public async Task<bool> Delete(Guid id1, Guid id2)
+        {
+            var result = await context.Set<Chat>().Where(c => c.FirstUserId == id1 && c.SecondUserId == id2).ExecuteDeleteAsync();
+            return result > 0;
         }
     }
 }

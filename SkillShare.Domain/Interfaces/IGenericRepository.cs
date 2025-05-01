@@ -6,6 +6,5 @@
         public Task<List<T>> GetAll();
         public Task Add(T item);
         public Task Update(T item);
-        public Task Delete(ValueType id);
     }
 }
