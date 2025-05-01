@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SkillShare.Application.CQRS.Chat.Commands.AddChatCommand;
+using SkillShare.Application.CQRS.User.Commands.CreateUserCommand;
 using SkillShare.Domain.Entities;
 using SkillShare.Infrastructure.DTOs;
 
@@ -10,6 +11,7 @@ namespace SkillShare.API.Configuration
         public AutoMappingProfile()
         {
             CreateMap<Chat, ChatDTO>().ReverseMap();
+            CreateMap<CreateUserCommand, User>().ReverseMap();
             CreateMap<AddChatCommand, Chat>();
         }
     }

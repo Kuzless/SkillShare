@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SkillShare.Domain.Interfaces;
 
 namespace SkillShare.Application.CQRS.Chat.Commands.AddChatCommand
@@ -18,7 +19,7 @@ namespace SkillShare.Application.CQRS.Chat.Commands.AddChatCommand
             var chat = _mapper.Map<Domain.Entities.Chat>(request);
             var result = await _unitOfWork.ChatRepository.Add(chat);
             await _unitOfWork.SaveAsync();
-            return result;
+            return $"{result.FirstUserId}:{result.SecondUserId}";
         }
     }
 }

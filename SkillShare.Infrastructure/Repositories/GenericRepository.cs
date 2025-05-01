@@ -9,10 +9,10 @@ namespace SkillShare.Infrastructure.Repositories
         {
             this.context = context;
         }
-        public virtual Task Add(T item)
+        public async virtual Task<T> Add(T item)
         {
-            context.Set<T>().AddAsync(item);
-            return Task.CompletedTask;
+            var entity = await context.Set<T>().AddAsync(item);
+            return entity.Entity;
         }
 
         public virtual Task<T> GetById(ValueType id)

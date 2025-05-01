@@ -10,22 +10,26 @@ namespace SkillShare.Infrastructure.Repositories
         {
         }
 
-        public override async Task<string> Add(Chat item)
-        {
-            await base.Add(item);
-            var result = await context.Set<Chat>().FindAsync(item.FirstUserId, item.SecondUserId);
-            return $"{result.FirstUserId}:{result.SecondUserId}";
-        }
-
         public async Task<bool> Delete(Guid id1, Guid id2)
         {
-            var result = await context.Set<Chat>().Where(c => c.FirstUserId == id1 && c.SecondUserId == id2).ExecuteDeleteAsync();
+            var result = await context.Set<Chat>().Where(c => (c.FirstUserId == id1 && c.SecondUserId == id2) || (c.FirstUserId == id2 && c.SecondUserId == id1)).ExecuteDeleteAsync();
             return result > 0;
         }
 
         public async Task<List<Chat>> GetAll(Guid id)
         {
             return await context.Set<Chat>().Where(c => c.FirstUserId == id || c.SecondUserId == id).ToListAsync();
+        }
+        public async override Task<Chat> Add(Chat chat)
+        {
+            bool isExisting =  await context.Set<Chat>().AnyAsync(c =>
+            (chat.FirstUserId == c.FirstUserId && chat.SecondUserId == c.SecondUserId) ||
+            (chat.FirstUserId == c.SecondUserId && chat.SecondUserId == c.FirstUserId));
+            if (isExisting)
+            {
+                return chat;
+            }
+            return await base.Add(chat);
         }
     }
 }
