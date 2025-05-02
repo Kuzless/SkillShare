@@ -16,6 +16,7 @@ namespace SkillShare.API.Configuration
             CreateMap<CreateUserCommand, User>();
             CreateMap<UserDTO, UpdateUserInfoCommand>();
             CreateMap<UpdateUserInfoCommand, User>();
+            CreateMap<User, UserPropositionsDTO>();
 
             CreateMap<Chat, ChatDTO>();
             CreateMap<AddChatCommand, Chat>();

@@ -4,5 +4,6 @@ namespace SkillShare.Domain.Interfaces
 {
     public interface IUserRepository : IGenericRepository<User>
     {
+        public Task<List<User>> GetPropositions(Guid userId);
     }
 }

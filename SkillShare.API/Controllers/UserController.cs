@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SkillShare.Application.CQRS.User.Commands.CreateUserCommand;
 using SkillShare.Application.CQRS.User.Commands.UpdateUserInfoCommand;
+using SkillShare.Application.CQRS.User.Queries.GetPropositionsQuery;
 using SkillShare.Application.DTOs;
 
 namespace SkillShare.API.Controllers
@@ -41,6 +42,16 @@ namespace SkillShare.API.Controllers
             if (!result)
             {
                 return Conflict();
+            }
+            return Ok(result);
+        }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<List<UserPropositionsDTO>>> Get(Guid id)
+        {
+            var result = await mediator.Send(new GetPropositionsQuery(id));
+            if (result == null)
+            {
+                return NotFound();
             }
             return Ok(result);
         }
