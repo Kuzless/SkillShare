@@ -12,12 +12,13 @@ namespace SkillShare.Application.CQRS.Chat.Commands.DeleteChatCommand
         }
         public async Task<bool> Handle(DeleteChatCommand request, CancellationToken cancellationToken)
         {
-            bool result = await _unitOfWork.ChatRepository.Delete(request.FirstUserId, request.SecondUserId);
-            if (result)
+            var entity = await _unitOfWork.ChatRepository.Delete(request.FirstUserId, request.SecondUserId);
+            if (entity != null)
             {
                 await _unitOfWork.SaveAsync();
+                return true;
             }
-            return result;
+            return false;
         }
     }
 }

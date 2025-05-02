@@ -7,6 +7,6 @@
         IChatRepository ChatRepository { get; }
         IMessageRepository MessageRepository { get; }
         IRatingRepository RatingRepository { get; }
-        public Task SaveAsync();
+        public Task<int> SaveAsync();
     }
 }

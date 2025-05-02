@@ -20,9 +20,10 @@ namespace SkillShare.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public virtual Task Update(T item)
+        public virtual async Task<T> Update(T item)
         {
-            throw new NotImplementedException();
+            var entity = context.Set<T>().Update(item);
+            return entity.Entity;
         }
     }
 }

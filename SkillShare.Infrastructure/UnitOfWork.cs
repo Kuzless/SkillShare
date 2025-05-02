@@ -25,7 +25,7 @@ namespace SkillShare.Infrastructure
             RatingRepository = new RatingRepository(context);
         }
 
-        public Task SaveAsync()
+        public Task<int> SaveAsync()
         {
             return context.SaveChangesAsync();
         }

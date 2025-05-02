@@ -4,6 +4,6 @@
     {
         public Task<T> GetById(ValueType id);
         public Task<T> Add(T item);
-        public Task Update(T item);
+        public Task<T> Update(T item);
     }
 }

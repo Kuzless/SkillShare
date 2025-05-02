@@ -10,10 +10,16 @@ namespace SkillShare.Infrastructure.Repositories
         {
         }
 
-        public async Task<bool> Delete(Guid id1, Guid id2)
+        public async Task<Chat> Delete(Guid id1, Guid id2)
         {
-            var result = await context.Set<Chat>().Where(c => (c.FirstUserId == id1 && c.SecondUserId == id2) || (c.FirstUserId == id2 && c.SecondUserId == id1)).ExecuteDeleteAsync();
-            return result > 0;
+            var entity = await context.Set<Chat>().Where(c => (c.FirstUserId == id1 && c.SecondUserId == id2) || (c.FirstUserId == id2 && c.SecondUserId == id1)).FirstOrDefaultAsync();
+            if (entity != null)
+            {
+                var result = context.Set<Chat>().Remove(entity);
+                return entity;
+                
+            }
+            return null;
         }
 
         public async Task<List<Chat>> GetAll(Guid id)
