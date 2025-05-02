@@ -26,6 +26,7 @@ namespace SkillShare.API
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(AddChatCommand).Assembly));
 
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddLogging();
 
             var app = builder.Build();
 

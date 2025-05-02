@@ -13,13 +13,8 @@ namespace SkillShare.Infrastructure.Repositories
         public async Task<Chat> Delete(Guid id1, Guid id2)
         {
             var entity = await context.Set<Chat>().Where(c => (c.FirstUserId == id1 && c.SecondUserId == id2) || (c.FirstUserId == id2 && c.SecondUserId == id1)).FirstOrDefaultAsync();
-            if (entity != null)
-            {
-                var result = context.Set<Chat>().Remove(entity);
-                return entity;
-                
-            }
-            return null;
+            var result = context.Set<Chat>().Remove(entity);
+            return entity;
         }
 
         public async Task<List<Chat>> GetAll(Guid id)
@@ -33,7 +28,7 @@ namespace SkillShare.Infrastructure.Repositories
             (chat.FirstUserId == c.SecondUserId && chat.SecondUserId == c.FirstUserId));
             if (isExisting)
             {
-                return chat;
+                throw new InvalidOperationException("Object already exists");
             }
             return await base.Add(chat);
         }

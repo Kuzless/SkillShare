@@ -25,6 +25,7 @@ namespace SkillShare.Infrastructure
             modelBuilder.Entity<Chat>().HasOne(c => c.FirstUser).WithMany(u => u.Chats).HasForeignKey(c => c.FirstUserId).OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<Chat>().HasOne(c => c.SecondUser).WithMany().HasForeignKey(c => c.SecondUserId).OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<Message>().HasOne(m => m.Chat).WithMany(c => c.Messages).HasForeignKey(k => new { k.OwnerId, k.ReceiverId }).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<User>().HasIndex(u => u.Email).IsUnique();
         }
     }
 }
