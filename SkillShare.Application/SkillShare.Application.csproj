@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="CQRS\Rating\Queries\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

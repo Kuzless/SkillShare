@@ -12,7 +12,10 @@ namespace SkillShare.Infrastructure.Repositories
 
         public async Task<List<Message>> GetMessages(Guid fUserId, Guid sUserId)
         {
-            return await context.Set<Message>().Where(m => m.ChatFirstUser == fUserId && m.ChatSecondUser == sUserId).Include(c => c.User).ToListAsync();
+            return await context.Set<Message>()
+                .Where(m => m.ChatFirstUser == fUserId && m.ChatSecondUser == sUserId)
+                .Include(c => c.User)
+                .ToListAsync();
         }
     }
 }

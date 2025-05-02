@@ -15,6 +15,8 @@ namespace SkillShare.Domain.Entities
         public string Token { get; set; }
         public string RefreshToken { get; set; }
         public List<Tag>? Tags { get; set; }
+        public List<Rating>? Marks { get; set; }
+        public List<Rating>? Reviews { get; set; }
         public List<Chat>? Chats { get; set; }
         public List<Message>? Messages { get; set; }
     }

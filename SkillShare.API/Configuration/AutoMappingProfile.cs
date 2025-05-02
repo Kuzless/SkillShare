@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using SkillShare.Application.CQRS.Chat.Commands.AddChatCommand;
 using SkillShare.Application.CQRS.Message.Commands.SendMessageCommand;
+using SkillShare.Application.CQRS.Rating.Commands.AddRatingReviewCommand;
+using SkillShare.Application.CQRS.Rating.Commands.ChangeRatingReviewCommand;
 using SkillShare.Application.CQRS.User.Commands.CreateUserCommand;
 using SkillShare.Application.CQRS.User.Commands.UpdateUserInfoCommand;
 using SkillShare.Application.DTOs;
@@ -24,6 +26,11 @@ namespace SkillShare.API.Configuration
             CreateMap<SendMessageDTO, SendMessageCommand>();
             CreateMap<SendMessageCommand, Message>();
             CreateMap<Message, MessageDTO>().ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.User.Name));
+
+            CreateMap<RateDTO, AddRatingReviewCommand>();
+            CreateMap<AddRatingReviewCommand, Rating>();
+            CreateMap<RateDTO, ChangeRatingReviewCommand>();
+            CreateMap<ChangeRatingReviewCommand, Rating>();
         }
     }
 }
