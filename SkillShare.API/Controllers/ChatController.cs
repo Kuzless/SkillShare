@@ -4,7 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using SkillShare.Application.CQRS.Chat.Commands.AddChatCommand;
 using SkillShare.Application.CQRS.Chat.Commands.DeleteChatCommand;
 using SkillShare.Application.CQRS.Chat.Queries.GetChatsByUserIdQuery;
-using SkillShare.Infrastructure.DTOs;
+using SkillShare.Application.DTOs;
 
 namespace SkillShare.API.Controllers
 {

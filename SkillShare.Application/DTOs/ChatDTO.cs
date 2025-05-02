@@ -1,4 +1,4 @@
-﻿namespace SkillShare.Infrastructure.DTOs
+﻿namespace SkillShare.Application.DTOs
 {
     public class ChatDTO
     {

@@ -15,11 +15,6 @@ namespace SkillShare.Infrastructure.Repositories
             return entity.Entity;
         }
 
-        public virtual Task<T> GetById(ValueType id)
-        {
-            throw new NotImplementedException();
-        }
-
         public virtual async Task<T> Update(T item)
         {
             var entity = context.Set<T>().Update(item);

@@ -21,9 +21,14 @@ namespace SkillShare.Application.CQRS.Chat.Commands.AddChatCommand
             var chat = _mapper.Map<Domain.Entities.Chat>(request);
             try
             {
-                var result = await _unitOfWork.ChatRepository.Add(chat);
-                await _unitOfWork.SaveAsync();
-                return $"{result.FirstUserId}:{result.SecondUserId}";
+                var entity = await _unitOfWork.ChatRepository.GetChat(chat.FirstUserId, chat.SecondUserId);
+                if (entity == null)
+                {
+                    var result = await _unitOfWork.ChatRepository.Add(chat);
+                    await _unitOfWork.SaveAsync();
+                    return $"{result.FirstUserId}:{result.SecondUserId}";
+                }
+                throw new InvalidOperationException("Object already exists");
 
             } catch (Exception ex)
             {

@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using SkillShare.Infrastructure.DTOs;
+using SkillShare.Application.DTOs;
 
 namespace SkillShare.Application.CQRS.Chat.Queries.GetChatsByUserIdQuery
 {

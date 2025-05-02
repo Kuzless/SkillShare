@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
+using SkillShare.Application.DTOs;
 using SkillShare.Domain.Interfaces;
-using SkillShare.Infrastructure.DTOs;
 
 namespace SkillShare.Application.CQRS.Chat.Queries.GetChatsByUserIdQuery
 {

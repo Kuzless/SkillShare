@@ -23,6 +23,7 @@ namespace SkillShare.API.Controllers
         public async Task<ActionResult<bool>> Post([FromBody] UserDTO user)
         {
             var command = mapper.Map<CreateUserCommand>(user);
+            command.Id = Guid.NewGuid();
             command.RefreshToken = "string";
             command.Token = "string";
             var result = await mediator.Send(command);
