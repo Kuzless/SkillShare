@@ -21,5 +21,10 @@ namespace SkillShare.Infrastructure.Repositories
                 .Include(u => u.Tags)
                 .FirstAsync(u => u.Id == id);
         }
+
+        public async Task<User> GetByEmail(string email)
+        {
+            return await context.Set<User>().Where(u => u.Email == email).FirstAsync();
+        }
     }
 }

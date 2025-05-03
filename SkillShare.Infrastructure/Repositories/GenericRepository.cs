@@ -15,10 +15,10 @@ namespace SkillShare.Infrastructure.Repositories
             return entity.Entity;
         }
 
-        public virtual async Task<T> Update(T item)
+        public virtual Task<T> Update(T item)
         {
             var entity = context.Set<T>().Update(item);
-            return entity.Entity;
+            return Task.FromResult(entity.Entity);
         }
     }
 }

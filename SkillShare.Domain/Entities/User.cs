@@ -12,8 +12,9 @@ namespace SkillShare.Domain.Entities
         public double? Rating { get; set; }
         public int? ReviewCount { get; set; }
         public string Password { get; set; }
-        public string Token { get; set; }
         public string RefreshToken { get; set; }
+        public DateTime RefreshTokenExpiryTime { get; set; }
+        public List<string> Roles { get; set; }
         public List<Tag>? Tags { get; set; }
         public List<Rating>? Marks { get; set; }
         public List<Rating>? Reviews { get; set; }

@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SkillShare.Application.CQRS.User.Commands.CreateUserCommand;
+using SkillShare.Application.CQRS.User.Commands.LoginUserCommand;
 using SkillShare.Application.CQRS.User.Commands.UpdateUserInfoCommand;
 using SkillShare.Application.CQRS.User.Queries.GetPropositionsQuery;
 using SkillShare.Application.DTOs;
@@ -20,21 +22,32 @@ namespace SkillShare.API.Controllers
             this.mapper = mapper;
         }
         [HttpPost]
-        public async Task<ActionResult<bool>> Post([FromBody] UserDTO user)
+        [Route("register")]
+        public async Task<ActionResult<TokensDTO>> Register([FromBody] SignInDTO user)
         {
             var command = mapper.Map<CreateUserCommand>(user);
-            command.Id = Guid.NewGuid();
-            command.RefreshToken = "string";
-            command.Token = "string";
             var result = await mediator.Send(command);
-            if (!result)
+            if (result == null)
             {
                 return Conflict();
             }
             return Ok(result);
         }
+        [HttpPost]
+        [Route("login")]
+        public async Task<ActionResult<TokensDTO>> Login([FromBody] SignInDTO user)
+        {
+            var command = mapper.Map<LoginUserCommand>(user);
+            var result = await mediator.Send(command);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+        [Authorize]
         [HttpPut]
-        public async Task<ActionResult<bool>> Put([FromBody] UserDTO user)
+        public async Task<ActionResult<bool>> UpdateUserData([FromBody] UserDTO user)
         {
             var command = mapper.Map<UpdateUserInfoCommand>(user);
             command.RefreshToken = "string";
@@ -46,8 +59,9 @@ namespace SkillShare.API.Controllers
             }
             return Ok(result);
         }
+        [Authorize(Roles = "User,Admin")]
         [HttpGet("{id}")]
-        public async Task<ActionResult<List<UserPropositionsDTO>>> Get(Guid id)
+        public async Task<ActionResult<List<UserPropositionsDTO>>> GetPropositions(Guid id)
         {
             var result = await mediator.Send(new GetPropositionsQuery(id));
             if (result == null)

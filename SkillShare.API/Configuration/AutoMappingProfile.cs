@@ -8,6 +8,7 @@ using SkillShare.Application.CQRS.Tag.Commands.CreateNewTagCommand;
 using SkillShare.Application.CQRS.Tag.Commands.DeleteTagCommand;
 using SkillShare.Application.CQRS.Tag.Commands.RemoveTagFromUserCommand;
 using SkillShare.Application.CQRS.User.Commands.CreateUserCommand;
+using SkillShare.Application.CQRS.User.Commands.LoginUserCommand;
 using SkillShare.Application.CQRS.User.Commands.UpdateUserInfoCommand;
 using SkillShare.Application.DTOs;
 using SkillShare.Domain.Entities;
@@ -19,8 +20,9 @@ namespace SkillShare.API.Configuration
         public AutoMappingProfile()
         {
             // User maps
-            CreateMap<UserDTO, CreateUserCommand>();
+            CreateMap<SignInDTO, CreateUserCommand>();
             CreateMap<CreateUserCommand, User>();
+            CreateMap<SignInDTO, LoginUserCommand>();
             CreateMap<UserDTO, UpdateUserInfoCommand>();
             CreateMap<UpdateUserInfoCommand, User>();
             CreateMap<User, UserPropositionsDTO>();

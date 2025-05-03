@@ -6,5 +6,6 @@ namespace SkillShare.Domain.Interfaces
     {
         public Task<List<User>> GetPropositions(Guid userId);
         public Task<User> GetById(Guid id);
+        public Task<User> GetByEmail(string email);
     }
 }
