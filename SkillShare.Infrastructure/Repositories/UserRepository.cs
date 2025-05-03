@@ -17,7 +17,9 @@ namespace SkillShare.Infrastructure.Repositories
         }
         public async Task<User> GetById(Guid id)
         {
-            return await context.Set<User>().FirstAsync(u => u.Id == id);
+            return await context.Set<User>()
+                .Include(u => u.Tags)
+                .FirstAsync(u => u.Id == id);
         }
     }
 }
