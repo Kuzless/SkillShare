@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SkillShare.Application.CQRS.Tag.Commands.AddTagToUserCommand;
 using SkillShare.Application.CQRS.Tag.Commands.CreateNewTagCommand;
@@ -10,6 +12,7 @@ using SkillShare.Application.DTOs;
 
 namespace SkillShare.API.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [ApiController]
     public class TagController : ControllerBase
@@ -21,6 +24,7 @@ namespace SkillShare.API.Controllers
             this.mapper = mapper;
             this.mediator = mediator;
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult<bool>> CreateNewTag([FromBody] TagDTO tag)
         {
@@ -32,6 +36,7 @@ namespace SkillShare.API.Controllers
             }
             return Ok(true);
         }
+        [Authorize(Roles = "Admin")]
         [HttpDelete]
         public async Task<ActionResult<bool>> DeleteTag([FromBody] TagDTO tag)
         {

@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SkillShare.Application.CQRS.Rating.Commands.AddRatingReviewCommand;
 using SkillShare.Application.CQRS.Rating.Commands.ChangeRatingReviewCommand;
@@ -7,6 +9,7 @@ using SkillShare.Application.DTOs;
 
 namespace SkillShare.API.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [ApiController]
     public class RatingController : ControllerBase

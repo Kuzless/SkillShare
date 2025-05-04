@@ -59,7 +59,7 @@ namespace SkillShare.API.Controllers
             }
             return Ok(result);
         }
-        [Authorize(Roles = "User,Admin")]
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<List<UserPropositionsDTO>>> GetPropositions(Guid id)
         {

@@ -37,8 +37,11 @@ namespace SkillShare.Application.Services
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()!),
                 new Claim(ClaimTypes.Name, user.Name),
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role, string.Join(",", user.Roles))
             };
+            foreach(var role in user.Roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Key"]!));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var accessToken = new JwtSecurityToken(

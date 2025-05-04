@@ -1,4 +1,6 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using SkillShare.Application.CQRS.Chat.Commands.AddChatCommand;
@@ -8,6 +10,7 @@ using SkillShare.Application.DTOs;
 
 namespace SkillShare.API.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [ApiController]
     public class ChatController : ControllerBase
