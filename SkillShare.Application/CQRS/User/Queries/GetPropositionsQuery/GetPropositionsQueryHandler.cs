@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
-using SkillShare.Application.DTOs;
+using SkillShare.Application.DTOs.User;
 using SkillShare.Domain.Interfaces;
 
 namespace SkillShare.Application.CQRS.User.Queries.GetPropositionsQuery

@@ -7,6 +7,7 @@ using SkillShare.Application.CQRS.User.Commands.LoginUserCommand;
 using SkillShare.Application.CQRS.User.Commands.UpdateUserInfoCommand;
 using SkillShare.Application.CQRS.User.Queries.GetPropositionsQuery;
 using SkillShare.Application.DTOs;
+using SkillShare.Application.DTOs.User;
 
 namespace SkillShare.API.Controllers
 {
@@ -23,7 +24,7 @@ namespace SkillShare.API.Controllers
         }
         [HttpPost]
         [Route("register")]
-        public async Task<ActionResult<TokensDTO>> Register([FromBody] SignInDTO user)
+        public async Task<ActionResult<TokensDTO>> Register([FromBody] AuthUserDTO user)
         {
             var command = mapper.Map<CreateUserCommand>(user);
             var result = await mediator.Send(command);
@@ -35,7 +36,7 @@ namespace SkillShare.API.Controllers
         }
         [HttpPost]
         [Route("login")]
-        public async Task<ActionResult<TokensDTO>> Login([FromBody] SignInDTO user)
+        public async Task<ActionResult<TokensDTO>> Login([FromBody] AuthUserDTO user)
         {
             var command = mapper.Map<LoginUserCommand>(user);
             var result = await mediator.Send(command);

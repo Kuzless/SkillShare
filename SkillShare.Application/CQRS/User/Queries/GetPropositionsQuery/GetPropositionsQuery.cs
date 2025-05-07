@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using SkillShare.Application.DTOs;
+using SkillShare.Application.DTOs.User;
 
 namespace SkillShare.Application.CQRS.User.Queries.GetPropositionsQuery
 {

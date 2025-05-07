@@ -1,4 +1,4 @@
-﻿namespace SkillShare.Application.DTOs
+﻿namespace SkillShare.Application.DTOs.User
 {
     public class UserPropositionsDTO
     {

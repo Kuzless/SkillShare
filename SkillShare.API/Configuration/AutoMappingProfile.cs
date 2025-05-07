@@ -11,6 +11,7 @@ using SkillShare.Application.CQRS.User.Commands.CreateUserCommand;
 using SkillShare.Application.CQRS.User.Commands.LoginUserCommand;
 using SkillShare.Application.CQRS.User.Commands.UpdateUserInfoCommand;
 using SkillShare.Application.DTOs;
+using SkillShare.Application.DTOs.User;
 using SkillShare.Domain.Entities;
 
 namespace SkillShare.API.Configuration
@@ -20,9 +21,9 @@ namespace SkillShare.API.Configuration
         public AutoMappingProfile()
         {
             // User maps
-            CreateMap<SignInDTO, CreateUserCommand>();
+            CreateMap<AuthUserDTO, CreateUserCommand>();
             CreateMap<CreateUserCommand, User>();
-            CreateMap<SignInDTO, LoginUserCommand>();
+            CreateMap<AuthUserDTO, LoginUserCommand>();
             CreateMap<UserDTO, UpdateUserInfoCommand>();
             CreateMap<UpdateUserInfoCommand, User>();
             CreateMap<User, UserPropositionsDTO>();
